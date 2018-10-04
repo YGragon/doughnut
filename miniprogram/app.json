@@ -1,0 +1,51 @@
+{
+  "cloud": true,
+  "pages": [
+    "pages/home/home",
+    "pages/index/index",
+    "pages/userConsole/userConsole",
+    "pages/storageConsole/storageConsole",
+    "pages/databaseGuide/databaseGuide",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/chooseLib/chooseLib",
+    "pages/publish/publish",
+    "pages/me/me",
+    "pages/homeDetail/homeDetail",
+    "pages/history/history",
+    "pages/collect/collect",
+    "pages/advance/advance"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "圈  圈",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#d81e06",
+    "backgroungColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "广场",
+        "iconPath": "images/tab/home_unselect.png",
+        "selectedIconPath": "images/tab/home_select.png"
+      },
+      {
+        "pagePath": "pages/publish/publish",
+        "text": "发布",
+        "iconPath": "images/tab/publish_unselect.png",
+        "selectedIconPath": "images/tab/publish_select.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "images/tab/me_unselect.png",
+        "selectedIconPath": "images/tab/me_select.png"
+      }
+    ]
+  }
+}

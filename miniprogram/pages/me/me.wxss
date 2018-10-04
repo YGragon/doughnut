@@ -1,0 +1,114 @@
+/* pages/mycenter/mycenter.wxss */
+
+.amountBg {
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+  background-color: #5495e6;
+  align-items: center;
+}
+
+.img {
+  overflow: hidden;
+  display: block;
+  margin-left: 20px;
+  width: 49px;
+  height: 49px;
+  border-radius: 50%;
+}
+
+.account {
+  width: 70%;
+  color: #fff;
+  margin-left: 10px;
+  align-items: center;
+}
+
+.nick-name{
+  font-family: 'Mcrosoft Yahei';
+  font-size: 16px;
+}
+
+.address{
+  font-size: 13px;
+}
+
+
+.nav {
+  width: 15px;
+  color: #fff;
+}
+
+.content {
+  background-color: #f4f4f4;
+  height: 500px;
+}
+
+.order {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  align-items: center;
+  position: absolute;
+  top: 90px;
+  width: 94%;
+  height: 70px;
+  margin-left: 3%;
+}
+
+.desc {
+  width: 25%;
+  font-size: 13px;
+}
+
+.clear {
+  padding-top: 70px;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  height: 50px;
+  align-items: center;
+}
+
+.icon {
+  width: 50px;
+  text-align: center;
+}
+
+.itemName {
+  width: 40%;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.line {
+  height: 10px;
+}
+
+.hr {
+  height: 1px;
+  background-color: #ccc;
+  opacity: 0.2;
+}
+
+.remark {
+  font-weight: normal;
+  margin-top: 5px;
+}
+
+.right {
+  width: 40%;
+  text-align: right;
+}
+
+.opr {
+  color: #5495e6;
+  font-size: 13px;
+  font-weight: bold;
+  margin-right: 10px;
+}

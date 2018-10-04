@@ -1,0 +1,40 @@
+<!--miniprogram/pages/home/home.wxml-->
+<block wx:for='{{topics}}' wx:for-index="idx">
+  <view class='container' bindtap='onItemClick' data-topicId='{{item._id}}'>
+    <view class='container-content'>
+      <view class='user-info'>
+        <image class='user-head' src='{{item.user.avatarUrl}}' mode='aspectFill'></image>
+        <view class='user-name-time'>
+          <view class='user-name'>{{item.user.nickName}}</view>
+          <view class='user-publish-time'>{{item.date}}</view>
+        </view>
+      </view>
+      <view class='content'>
+        <!-- 显示文本 -->
+        <block wx:if="{{item.content != ''}} && {{item.images.length > 0}}">
+          <text class='content-text'>{{item.content}}</text>
+          <scroll-view class='content-scroll' scroll-x='true'>
+            <block wx:for="{{item.images}}">
+              <image class='content-img' src='{{item}}' mode='aspectFill'></image>
+            </block>
+          </scroll-view>
+        </block>
+        <!-- 显示图片 -->
+        <block wx:elif="{{item.images.length > 0}}">
+          <scroll-view class='content-scroll' scroll-x='true'>
+            <block wx:for="{{item.images}}">
+              <image class='content-img' src='{{item}}' mode='aspectFill'></image>
+            </block>
+          </scroll-view>
+
+        </block>
+        <!-- 显示文本 -->
+        <block wx:else>
+          <text class='content-text'>{{item.content}}</text>
+        </block>
+      </view>
+    </view>
+
+    <view class='container-line'></view>
+  </view>
+</block>

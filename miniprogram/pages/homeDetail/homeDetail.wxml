@@ -1,0 +1,41 @@
+<!--miniprogram/pages/homeDetail/homeDetail.wxml-->
+<view class='container' bindtap='onItemClick'>
+  <view class='container-content'>
+    <view class='user-info'>
+      <image class='user-head' src='{{topic.user.avatarUrl}}' mode='aspectFill'></image>
+      <view class='user-name-time'>
+        <view class='user-name'>{{topic.user.nickName}}</view>
+        <view class='user-publish-time'>{{topic.date}}</view>
+      </view>
+    </view>
+    <view class='content'>
+      <!-- 显示文本 -->
+      <block wx:if="{{topic.images.length <= 0}}">
+        <text class='content-text'>{{topic.content}}</text>
+      </block>
+      <!-- 显示图片 -->
+      <block wx:else>
+        <scroll-view class='content-scroll' scroll-y='true'>
+          <block wx:for="{{topic.images}}" wx:for-index="idx">
+            <image class='content-img' src='{{item}}' mode='aspectFill' bindtap="previewImg" data-index='{{idx}}'></image>
+          </block>
+        </scroll-view>
+
+      </block>
+
+    </view>
+  </view>
+  <!-- <view class='line'>文末</view> -->
+  <view class='like-container' bindtap='onLikeClick'>
+    <view class='like-container' wx:if='{{isLike}}'>
+      <image class='like-icon' src='../../images/topic-detail/like.png'></image>
+      <text class='like-text'>已喜欢</text>
+    </view>
+    <view class='like-container' wx:else>
+      <image class='like-icon' src='../../images/topic-detail/unlike.png'></image>
+      <text class='like-text'>喜欢</text>
+    </view>
+
+  </view>
+
+</view>
