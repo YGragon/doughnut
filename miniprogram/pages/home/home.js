@@ -16,11 +16,11 @@ Page({
    */
   onLoad: function(options) {
     console.log('onload');
-    this.getData(this.data.page);    
+    this.getData(this.data.page);
   },
   /**
    * 获取列表数据
-   * 
+   *
    */
   getData: function(page) {
     var that = this;
@@ -36,7 +36,7 @@ Page({
     try {
       db.collection('topic')
         .where({
-          _openid: 'oSly05H9VAU2F9MdHl0DxvU1KwZE', // 填入当前用户 openid
+          _openid: 'oSly*********1KwZE', // 填入当前用户 openid
         })
         .limit(that.data.pageSize) // 限制返回数量为 10 条
         .orderBy('date', 'desc')
@@ -50,7 +50,7 @@ Page({
             })
             wx.hideNavigationBarLoading();//隐藏加载
             wx.stopPullDownRefresh();
-            
+
           },
           fail: function(event) {
             wx.hideNavigationBarLoading();//隐藏加载
@@ -164,7 +164,7 @@ console.log('pulldown');
         title: '没有更多数据了',
       })
     }
-    
+
   },
 
   /**
