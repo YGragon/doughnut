@@ -91,7 +91,6 @@ Page({
       // data 字段表示需新增的 JSON 数据
       data: {
         _id: that.data.id,
-        tid: that.data.id,
         date: new Date(),
       },
       success: function(res) {

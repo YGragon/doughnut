@@ -1,4 +1,5 @@
-// miniprogram/pages/collect/collect.js
+var that
+const db = wx.cloud.database()
 Page({
 
   /**
@@ -15,179 +16,70 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    this.getData(this.data.page);
+  onLoad: function(options) {
+    that = this
+  },
+
+  onShow: function() {
+    that.getData(that.data.page);
   },
   /**
    * 获取列表数据
    * 
    */
-  getData: function (page) {
-    var that = this;
-    const db = wx.cloud.database();
-    // 获取总数
-    db.collection('collect').count({
-      success: function (res) {
-        that.data.totalCount = res.total;
-      }
-    })
-    // 获取前十条
-    try {
-      db.collection('collect')
-        .where({
-          _openid: 'oSly05H9VAU2F9MdHl0DxvU1KwZE', // 填入当前用户 openid
-        })
-        .limit(that.data.pageSize) // 限制返回数量为 10 条
-        .orderBy('date', 'desc')
-        .get({
-          success: function (res) {
-            // res.data 是包含以上定义的两条记录的数组
-            that.data.collects = res.data;
-            console.log("collects---》" + that.data.collects);
-            that.getTopicFromCollects();
-           
-          },
-          fail: function (event) {
-            wx.hideNavigationBarLoading();//隐藏加载
-            wx.stopPullDownRefresh();
-          }
-        })
-     
-    } catch (e) {
-      wx.hideNavigationBarLoading();//隐藏加载
-      wx.stopPullDownRefresh();
-      console.error(e);
-    }
+  getData: function(page) {
+    db.collection('collect')
+      .where({
+        _openid: 'oSly05H9VAU2F9MdHl0DxvU1KwZE', // 填入当前用户 openid
+      })
+      .get({
+        success: function(res) {
+          // res.data 是包含以上定义的两条记录的数组
+          that.data.collects = res.data;
+          that.getTopicFromCollects();
+
+        },
+
+      })
+
   },
   /**
    * 获取收藏中的 id 的话题
    */
-  getTopicFromCollects:function(event){
-    const db = wx.cloud.database();
-    console.log("集合长度"+this.data.collects.length);
-    var that = this;    
+  getTopicFromCollects: function(event) {
     var tempTopics = {};
-    for(var i = 0; i < this.data.collects.length; i++){
-      var topicId = this.data.collects[i].tid;
-      console.log("topicId" + topicId);
-      db.collection('topic').doc(topicId).get({
-        success: function (res) {
-          that.data.topics.push(res.data);
-          // console.log("data=1==" + that.data.topics);
-          that.setData({
-            topics: that.data.topics,
-          })
-        },
-        fail: console.log
-      })
+    // for (var i = 0; i < that.data.collects.length; i++) {
+    for (var i in that.data.collects) {
+      var topicId = that.data.collects[i]._id;
+      db.collection('topic')
+        .doc(topicId)
+        .get({
+          success: function(res) {
+            that.data.topics.push(res.data);
+            that.setData({
+              topics: that.data.topics,
+            })
+          },
+          fail: console.log
+        })
     }
-    
+
   },
   /**
    * item 点击
    */
-  onItemClick: function (event) {
+  onItemClick: function(event) {
     var id = event.currentTarget.dataset.topicid;
     console.log(id);
     wx.navigateTo({
       url: "../homeDetail/homeDetail?id=" + id
     })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    console.log('onReady');
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    console.log('onShow');
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-    console.log('onhide');
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-    console.log('onUnload');
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  // onReachBottom: function () {
-  //   var that = this;
-  //   var temp = [];
-  //   // 获取后面十条
-  //   if (this.data.topics.length < this.data.totalCount) {
-  //     try {
-  //       const db = wx.cloud.database();
-  //       db.collection('collect')
-  //         .where({
-  //           _openid: 'oSly05H9VAU2F9MdHl0DxvU1KwZE', // 填入当前用户 openid
-  //         })
-  //         .skip(5)
-  //         .limit(that.data.pageSize) // 限制返回数量为 10 条
-  //         .orderBy('date', 'desc')
-  //         .get({
-  //           success: function (res) {
-  //             // res.data 是包含以上定义的两条记录的数组
-  //             if (res.data.length > 0) {
-  //               for (var i = 0; i < res.data.length; i++) {
-  //                 var tempTopic = res.data[i];
-  //                 console.log(tempTopic);
-  //                 temp.push(tempTopic);
-  //               }
-
-  //               var totalTopic = {};
-  //               totalTopic = that.data.topics.concat(temp);
-
-  //               console.log(totalTopic);
-  //               that.setData({
-  //                 topics: totalTopic,
-  //               })
-  //             } else {
-  //               wx.showToast({
-  //                 title: '没有更多数据了',
-  //               })
-  //             }
-
-
-  //           },
-  //           fail: function (event) {
-  //             console.log("======" + event);
-  //           }
-  //         })
-  //     } catch (e) {
-  //       console.error(e);
-  //     }
-  //   } else {
-  //     wx.showToast({
-  //       title: '没有更多数据了',
-  //     })
-  //   }
-
-  // },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })
