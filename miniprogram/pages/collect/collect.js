@@ -20,7 +20,7 @@ Page({
   },
   /**
    * 获取列表数据
-   *
+   * 
    */
   getData: function (page) {
     var that = this;
@@ -35,7 +35,7 @@ Page({
     try {
       db.collection('collect')
         .where({
-          _openid: 'oSly05H********xvU1KwZE', // 填入当前用户 openid
+          _openid: 'oSly05H9VAU2F9MdHl0DxvU1KwZE', // 填入当前用户 openid
         })
         .limit(that.data.pageSize) // 限制返回数量为 10 条
         .orderBy('date', 'desc')
@@ -45,14 +45,14 @@ Page({
             that.data.collects = res.data;
             console.log("collects---》" + that.data.collects);
             that.getTopicFromCollects();
-
+           
           },
           fail: function (event) {
             wx.hideNavigationBarLoading();//隐藏加载
             wx.stopPullDownRefresh();
           }
         })
-
+     
     } catch (e) {
       wx.hideNavigationBarLoading();//隐藏加载
       wx.stopPullDownRefresh();
@@ -65,7 +65,7 @@ Page({
   getTopicFromCollects:function(event){
     const db = wx.cloud.database();
     console.log("集合长度"+this.data.collects.length);
-    var that = this;
+    var that = this;    
     var tempTopics = {};
     for(var i = 0; i < this.data.collects.length; i++){
       var topicId = this.data.collects[i].tid;
@@ -81,7 +81,7 @@ Page({
         fail: console.log
       })
     }
-
+    
   },
   /**
    * item 点击
@@ -127,7 +127,62 @@ Page({
   onPullDownRefresh: function () {
   },
 
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  // onReachBottom: function () {
+  //   var that = this;
+  //   var temp = [];
+  //   // 获取后面十条
+  //   if (this.data.topics.length < this.data.totalCount) {
+  //     try {
+  //       const db = wx.cloud.database();
+  //       db.collection('collect')
+  //         .where({
+  //           _openid: 'oSly05H9VAU2F9MdHl0DxvU1KwZE', // 填入当前用户 openid
+  //         })
+  //         .skip(5)
+  //         .limit(that.data.pageSize) // 限制返回数量为 10 条
+  //         .orderBy('date', 'desc')
+  //         .get({
+  //           success: function (res) {
+  //             // res.data 是包含以上定义的两条记录的数组
+  //             if (res.data.length > 0) {
+  //               for (var i = 0; i < res.data.length; i++) {
+  //                 var tempTopic = res.data[i];
+  //                 console.log(tempTopic);
+  //                 temp.push(tempTopic);
+  //               }
 
+  //               var totalTopic = {};
+  //               totalTopic = that.data.topics.concat(temp);
+
+  //               console.log(totalTopic);
+  //               that.setData({
+  //                 topics: totalTopic,
+  //               })
+  //             } else {
+  //               wx.showToast({
+  //                 title: '没有更多数据了',
+  //               })
+  //             }
+
+
+  //           },
+  //           fail: function (event) {
+  //             console.log("======" + event);
+  //           }
+  //         })
+  //     } catch (e) {
+  //       console.error(e);
+  //     }
+  //   } else {
+  //     wx.showToast({
+  //       title: '没有更多数据了',
+  //     })
+  //   }
+
+  // },
 
   /**
    * 用户点击右上角分享

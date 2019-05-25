@@ -1,6 +1,6 @@
 <!--miniprogram/pages/home/home.wxml-->
 <block wx:for='{{topics}}' wx:for-index="idx">
-  <view class='container' bindtap='onItemClick' data-topicId='{{item._id}}'>
+  <view class='container' bindtap='onItemClick' data-topicId='{{item._id}}' data-openid='{{item._openid}}'>
     <view class='container-content'>
       <view class='user-info'>
         <image class='user-head' src='{{item.user.avatarUrl}}' mode='aspectFill'></image>

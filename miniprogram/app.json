@@ -2,13 +2,6 @@
   "cloud": true,
   "pages": [
     "pages/home/home",
-    "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
     "pages/publish/publish",
     "pages/me/me",
     "pages/homeDetail/homeDetail",
@@ -47,5 +40,6 @@
         "selectedIconPath": "images/tab/me_select.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

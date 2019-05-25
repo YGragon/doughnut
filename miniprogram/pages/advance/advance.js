@@ -17,7 +17,7 @@ Page({
   getTextAreaContent: function (event) {
     this.data.content = event.detail.value;
   },
-
+ 
   /**
    * 发布
    */
@@ -47,7 +47,37 @@ Page({
   saveDataToServer: function (event) {
     var that = this;
     that.showTipAndSwitchTab();
+    // const db = wx.cloud.database();
+    // const topic = db.collection('topic')
+    // db.collection('topic').add({
+    //   // data 字段表示需新增的 JSON 数据
+    //   data: {
+    //     content: that.data.content,
+    //     date: new Date(),
+    //     images: that.data.images,
+    //     user: that.data.user,
+    //     isLike: that.data.isLike,
+    //   },
+    //   success: function (res) {
+    //     // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
+    //     // 清空，然后重定向到首页
+    //     console.log("success---->" + res)
+    //     // 清空数据
+    //     that.data.content = "";
+    //     that.data.images = [];
 
+    //     that.setData({
+    //       textContent: '',
+    //       images: [],
+    //     })
+
+    //     that.showTipAndSwitchTab();
+
+    //   },
+    //   complete: function (res) {
+    //     console.log("complete---->" + res)
+    //   }
+    // })
   },
   /**
    * 添加成功添加提示，切换页面
@@ -61,7 +91,7 @@ Page({
     })
     console.log("============")
   },
-
+ 
 
   /**
    * 生命周期函数--监听页面加载

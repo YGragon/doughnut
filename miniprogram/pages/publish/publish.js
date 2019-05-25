@@ -1,4 +1,5 @@
-// miniprogram/pages/publish/publish.js
+var that
+const db = wx.cloud.database();
 Page({
 
   /**
@@ -12,40 +13,63 @@ Page({
     isLike: false,
   },
   /**
+    * 生命周期函数--监听页面加载
+    */
+  onLoad: function (options) {
+    that = this
+    that.jugdeUserLogin();
+  },
+  /**
    * 获取填写的内容
    */
   getTextAreaContent: function(event) {
-    this.data.content = event.detail.value;
+    that.data.content = event.detail.value;
   },
+
   /**
    * 选择图片
    */
   chooseImage: function(event) {
-    var that = this;
     wx.chooseImage({
       count: 6,
       success: function(res) {
-        // tempFilePath可以作为img标签的src属性显示图片
-        const tempFilePaths = res.tempFilePaths
-
-        for (var i in tempFilePaths) {
-          that.data.images = that.data.images.concat(tempFilePaths[i])
-        }
         // 设置图片
         that.setData({
-          images: that.data.images,
+          images: res.tempFilePaths,
         })
+        that.data.images = []
+        console.log(res.tempFilePaths)
+        for (var i in res.tempFilePaths) {
+          // 将图片上传至云存储空间
+          wx.cloud.uploadFile({
+            // 指定要上传的文件的小程序临时文件路径
+            cloudPath: that.timetostr(new Date()),
+            filePath: res.tempFilePaths[i],
+            // 成功回调
+            success: res => {
+              that.data.images.push(res.fileID)
+            },
+          })
+        }
       },
     })
   },
   /**
+   * 图片路径格式化
+   */
+  timetostr(time){
+    var randnum = Math.floor(Math.random() * (9999 - 1000)) + 1000;
+    var str = randnum +"_"+ time.getMilliseconds() + ".png";
+    return str;
+  },
+
+  /**
    * 发布
    */
   formSubmit: function(e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value['input-content'])
+    console.log('图片：', that.data.images)
+
     this.data.content = e.detail.value['input-content'];
-    console.log("内容--->" + this.data.content.trim());
-    // this.data.user = event.detail.userInfo;
     if (this.data.canIUse) {
       if (this.data.images.length > 0) {
         this.saveDataToServer();
@@ -53,10 +77,10 @@ Page({
         this.saveDataToServer();
       } else {
         wx.showToast({
-          title: '没有内容不能发布哦',
+          icon: 'none',
+          title: '写点东西吧',
         })
       }
-
     } else {
       this.jugdeUserLogin();
     }
@@ -65,8 +89,7 @@ Page({
    * 保存到发布集合中
    */
   saveDataToServer: function(event) {
-    var that = this;
-    const db = wx.cloud.database();
+    
     const topic = db.collection('topic')
     db.collection('topic').add({
       // data 字段表示需新增的 JSON 数据
@@ -78,9 +101,6 @@ Page({
         isLike: that.data.isLike,
       },
       success: function(res) {
-        // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
-        // 清空，然后重定向到首页
-        console.log("success---->" + res)
         // 保存到发布历史
         that.saveToHistoryServer();
         // 清空数据
@@ -95,9 +115,6 @@ Page({
         that.showTipAndSwitchTab();
 
       },
-      complete: function(res) {
-        console.log("complete---->" + res)
-      }
     })
   },
   /**
@@ -110,7 +127,6 @@ Page({
     wx.switchTab({
       url: '../home/home',
     })
-    console.log("============")
   },
   /**
    * 删除图片
@@ -127,7 +143,6 @@ Page({
   previewImg: function(e) {
     //获取当前图片的下标
     var index = e.currentTarget.dataset.index;
-
     wx.previewImage({
       //当前显示图片
       current: this.data.images[index],
@@ -141,7 +156,6 @@ Page({
    */
   saveToHistoryServer: function(event) {
     var that = this;
-    const db = wx.cloud.database();
     db.collection('history').add({
       // data 字段表示需新增的 JSON 数据
       data: {
@@ -159,17 +173,11 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
-    this.jugdeUserLogin();
-  },
+
   /**
    * 判断用户是否登录
    */
   jugdeUserLogin: function(event) {
-    var that = this;
     // 查看是否授权
     wx.getSetting({
       success(res) {
@@ -186,48 +194,7 @@ Page({
       }
     })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-    
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
+ 
   /**
    * 用户点击右上角分享
    */
