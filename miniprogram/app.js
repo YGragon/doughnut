@@ -11,11 +11,10 @@ App({
     }
 
     this.globalData = {
-      // openid: '你的openid',
-      // evn: '你的开发环境'
+      openid: '你的openid',
+      evn: '你的开发环境'
       
-      openid: 'oSly05H9VAU2F9MdHl0DxvU1KwZE',
-      evn: 'dongxi-b520ba'
+      
     }
   }
 })
