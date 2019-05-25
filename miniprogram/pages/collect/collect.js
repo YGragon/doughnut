@@ -1,5 +1,6 @@
 var that
 const db = wx.cloud.database()
+const app = getApp()
 Page({
 
   /**
@@ -30,7 +31,7 @@ Page({
   getData: function(page) {
     db.collection('collect')
       .where({
-        _openid: 'oSly05H9VAU2F9MdHl0DxvU1KwZE', // 填入当前用户 openid
+        _openid: app.globalData.openid, // 填入当前用户 openid
       })
       .get({
         success: function(res) {
@@ -63,7 +64,6 @@ Page({
           fail: console.log
         })
     }
-
   },
   /**
    * item 点击

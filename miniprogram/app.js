@@ -10,6 +10,8 @@ App({
       })
     }
 
-    this.globalData = {}
+    this.globalData = {
+      openid:'你的openid'
+    }
   }
 })
