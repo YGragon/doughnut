@@ -1,15 +1,14 @@
 <!--miniprogram/pages/advance/advance.wxml-->
 <view class="content">
-  <form bindsubmit="formSubmit">
-    <view class="text-content">
-      <view class='text-area'>
-        <textarea name="input-content" type="text" placeholder="开始你的表演~" value="{{textContent}}" bindblur='getTextAreaContent'></textarea>
-      </view>
+  <view class="text-content">
+    <view class='input-content'>
+      <input bindinput="bindKeyInput" placeholder="开始你的表演~" />
     </view>
 
-    <view class='btn-func'>
-      <button class="btn" formType='submit' open-type="getUserInfo">发射神评</button>
-    </view>
-  </form>
+  </view>
+
+  <view class='btn-func'>
+    <button class="btn" bindtap='saveReplay' open-type="getUserInfo">发射神评</button>
+  </view>
 
 </view>

@@ -48,13 +48,21 @@ Page({
         fail: console.error
       })
 
+  },
+
+  onShow: function() {
+    // 获取回复列表
+    that.getReplay()
+  },
+
+  getReplay: function() {
     // 获取回复列表
     db.collection('replay')
       .where({
         t_id: that.data.id
       })
       .get({
-        success: function (res) {
+        success: function(res) {
           // res.data 包含该记录的数据
           console.log(res)
           that.setData({
@@ -128,7 +136,7 @@ Page({
    */
   onReplayClick() {
     wx.navigateTo({
-      url: "../replay/replay?id=" + that.data.id+"&openid="+that.data.openid
+      url: "../replay/replay?id=" + that.data.id + "&openid=" + that.data.openid
     })
   },
 

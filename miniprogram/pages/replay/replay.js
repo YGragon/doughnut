@@ -20,14 +20,13 @@ Page({
     that.data.openid = options.openid;
   },
 
-  /**
-   *  获取填写的内容
-   */
-  getTextAreaContent: function(event) {
-    that.data.content = event.detail.value;
+  bindKeyInput(e) {
+    that.data.content = e.detail.value;
+    console.log("内容：" + that.data.content)
+
   },
 
-  formSubmit: function() {
+  saveReplay: function() {
     db.collection('replay').add({
       // data 字段表示需新增的 JSON 数据
       data: {
