@@ -10,40 +10,44 @@
     </view>
     <view class='content'>
       <!-- 显示文本 -->
-      <block wx:if="{{topic.content != ''}} && {{topic.images.length > 0}}">
+      <view wx:if="{{topic.content != ''}} && {{topic.images.length > 0}}">
         <text class='content-text'>{{topic.content}}</text>
-        <scroll-view class='content-scroll' scroll-y='true'>
-          <block wx:for="{{topic.images}}" wx:for-index="idx">
-            <image class='content-img' src='{{item}}' mode='aspectFill' bindtap="previewImg" data-index='{{idx}}'></image>
-          </block>
-        </scroll-view>
-      </block>
-      <!-- 显示图片 -->
-      <block wx:elif="{{topic.images.length > 0}}">
-        <scroll-view class='content-scroll' scroll-y='true'>
-          <block wx:for="{{topic.images}}" wx:for-index="idx">
-            <image class='content-img' src='{{item}}' mode='aspectFill' bindtap="previewImg" data-index='{{idx}}'></image>
-          </block>
-        </scroll-view>
-      </block>
-       <!-- 显示文本 -->
-        <block wx:else>
-          <text class='content-text'>{{topic.content}}</text>
+        <block wx:for="{{topic.images}}" wx:for-index="idx">
+          <image class='content-img' src='{{item}}' mode='aspectFill' bindtap="previewImg" data-index='{{idx}}'></image>
         </block>
-
+      </view>
+      <!-- 显示图片 -->
+      <view wx:elif="{{topic.images.length > 0}}">
+        <block wx:for="{{topic.images}}" wx:for-index="idx">
+          <image class='content-img' src='{{item}}' mode='aspectFill' bindtap="previewImg" data-index='{{idx}}'></image>
+        </block>
+      </view>
+      <!-- 显示文本 -->
+      <block wx:else>
+        <text class='content-text'>{{topic.content}}</text>
+      </block>
     </view>
+  </view>
+  <!-- 显示回复列表 -->
+  <view class='replay_content' wx:if="{{replays.length > 0}}">
+    <text class='tip-text'>-----------以下是回复内容----------</text>
+    <block wx:for="{{replays}}" wx:for-index="idx">
+      <text >{{idx}} : {{item.content}}</text>
+    </block>
   </view>
   <!-- <view class='line'>文末</view> -->
-  <view class='like-container' bindtap='onLikeClick'>
-    <view class='like-container' wx:if='{{isLike}}'>
-      <image class='like-icon' src='../../images/topic-detail/like.png'></image>
-      <text class='like-text'>已喜欢</text>
-    </view>
-    <view class='like-container' wx:else>
-      <image class='like-icon' src='../../images/topic-detail/unlike.png'></image>
-      <text class='like-text'>喜欢</text>
-    </view>
-
+  <view class='like-container' bindtap='onLikeClick' wx:if='{{isLike}}'>
+    <image class='like-icon' src='../../images/topic-detail/like.png'></image>
+    <text class='like-text'>已喜欢</text>
   </view>
+  <view class='like-container' bindtap='onLikeClick' wx:else>
+    <image class='like-icon' src='../../images/topic-detail/unlike.png'></image>
+    <text class='like-text'>喜欢</text>
+  </view>
+
+  <view class='replay-container' bindtap='onReplayClick'>
+    <button>回复</button>
+  </view>
+
 
 </view>

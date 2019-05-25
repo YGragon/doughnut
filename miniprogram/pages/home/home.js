@@ -1,4 +1,5 @@
 var that
+const app = getApp()
 Page({
 
   /**
@@ -15,7 +16,7 @@ Page({
   onLoad: function(options) {
     that = this
     wx.cloud.init({
-      env: 'dongxi-b520ba'
+      env: app.globalData.evn
     })
   },
 

@@ -1,0 +1,55 @@
+
+.content {
+  height: 100%;
+  width: 100%;
+}
+
+
+.text-content {
+  padding: 0 25rpx;
+}
+
+textarea {
+  width: 100%;
+  height: 750rpx;
+  padding: 5px;
+  background-color: #f3efef;
+}
+
+.input-content{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 36px;
+  align-items: center;
+  line-height: 36px;
+  border-radius: 5px;
+  background-color: #f3efef;
+  padding: 5px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+
+.btn-func {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  margin: 0 auto;
+  align-items: center;
+}
+
+
+
+.btn {
+  width: 220px;
+  height: 45px;
+  line-height: 45px;
+  background-color: #d50310;
+  color: #fff;
+  border-radius: 50px;
+  margin-bottom: 20px;
+}
+

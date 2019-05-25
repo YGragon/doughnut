@@ -39,13 +39,27 @@ Page({
       })
       .get({
         success: function(res) {
-          // res.data 包含该记录的数据
-          console.log(res)
           if (res.data.length > 0) {
             that.refreshLikeIcon(true)
           } else {
             that.refreshLikeIcon(false)
           }
+        },
+        fail: console.error
+      })
+
+    // 获取回复列表
+    db.collection('replay')
+      .where({
+        t_id: that.data.id
+      })
+      .get({
+        success: function (res) {
+          // res.data 包含该记录的数据
+          console.log(res)
+          that.setData({
+            replays: res.data
+          })
         },
         fail: console.error
       })
@@ -109,6 +123,14 @@ Page({
     });
   },
 
+  /**
+   * 跳转回复页面
+   */
+  onReplayClick() {
+    wx.navigateTo({
+      url: "../replay/replay?id=" + that.data.id+"&openid="+that.data.openid
+    })
+  },
 
   /**
    * 用户点击右上角分享
