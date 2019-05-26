@@ -90,7 +90,6 @@ Page({
    */
   saveDataToServer: function(event) {
     
-    const topic = db.collection('topic')
     db.collection('topic').add({
       // data 字段表示需新增的 JSON 数据
       data: {
@@ -155,7 +154,6 @@ Page({
    * 添加到发布集合中
    */
   saveToHistoryServer: function(event) {
-    var that = this;
     db.collection('history').add({
       // data 字段表示需新增的 JSON 数据
       data: {
