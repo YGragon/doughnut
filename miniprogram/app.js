@@ -13,8 +13,6 @@ App({
     this.globalData = {
       openid: '你的openid',
       evn: '你的开发环境'
-      
-      
     }
   }
 })
