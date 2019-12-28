@@ -92,27 +92,30 @@
 
 .like-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: nowrap;
   align-items: center;
-  margin-top: 20px;
-  margin-bottom: 40px;
+  justify-content: center;
   position: fixed;
   bottom: 0;
 }
 
-.replay-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-  margin-right: 40px;
-  position: fixed;
-  right: 0;
-}
 
 .like-icon {
   width: 48px;
   height: 48px;
+  margin: 40rpx;
+}
+
+.btn-class{
+  margin: 40rpx;
+  background-color: burlywood;
+  color: white;
+  border-radius: 98rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .like-text {
@@ -125,6 +128,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  margin-bottom: 200rpx;
 }
 
 .tip-text{

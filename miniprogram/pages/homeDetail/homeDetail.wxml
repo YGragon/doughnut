@@ -32,21 +32,17 @@
   <view class='replay_content' wx:if="{{replays.length > 0}}">
     <text class='tip-text'>-----------以下是回复内容----------</text>
     <block wx:for="{{replays}}" wx:for-index="idx">
-      <text >{{idx}} : {{item.content}}</text>
+      <text>{{idx}} : {{item.content}}</text>
     </block>
   </view>
   <!-- <view class='line'>文末</view> -->
-  <view class='like-container' bindtap='onLikeClick' wx:if='{{isLike}}'>
-    <image class='like-icon' src='../../images/topic-detail/like.png'></image>
-    <text class='like-text'>已喜欢</text>
+  <view class='like-container' wx:if='{{isLike}}'>
+    <button class='btn-class'  bindtap='onReplayClick'>回复</button>
+    <image class='like-icon' src='../../images/topic-detail/like.png' bindtap='onLikeClick' ></image>
   </view>
-  <view class='like-container' bindtap='onLikeClick' wx:else>
-    <image class='like-icon' src='../../images/topic-detail/unlike.png'></image>
-    <text class='like-text'>喜欢</text>
-  </view>
-
-  <view class='replay-container' bindtap='onReplayClick'>
-    <button>回复</button>
+  <view class='like-container' wx:else>
+    <button class='btn-class'  bindtap='onReplayClick'>回复</button>
+    <image class='like-icon' src='../../images/topic-detail/unlike.png' bindtap='onLikeClick'></image>
   </view>
 
 
