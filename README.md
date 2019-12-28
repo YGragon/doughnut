@@ -1,5 +1,5 @@
 # 甜甜圈
-## 安装说明
+## 使用说明
 0. 在微信小程序客户端创建一个云开发项目
 
 1. 在云开发控制台页面，选择数据库，创建 `topic`,`collect`,`history`,`replay` 四个集合
@@ -36,3 +36,10 @@ ps: `openid` 的获取可以参考我之前的文章：
 ![回复](/screenshots/回复.PNG)
 ![预览图片](/screenshots/预览图片.png)
 ![我的](/screenshots/我的.png)
+
+
+
+## 更多信息
+
+- 更多小程序文章可查看我的专栏：**[小程序之旅](https://blog.csdn.net/ITxiaodong/category_9274001.html)**，专栏中有小程序云开发项目，也有使用`NodeJS+Koa2`开发的小程序后台服务器。
+- 如还有问题，加我微信（weixin1105894953）发1.68红包可解答小程序相关问题
