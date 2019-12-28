@@ -4,7 +4,7 @@
 
 1. 在云开发控制台页面，选择数据库，创建 `topic`,`collect`,`history`,`replay` 四个集合
 
-   ![1577505643270](C:\Users\Aller\AppData\Roaming\Typora\typora-user-images\1577505643270.png)
+   ![开发环境](/screenshots/创建数据.png)
 
 2. 下载到本地 `git clone https://github.com/dongxi346/doughnut.git `或者 `下载 zip`
 
@@ -18,11 +18,15 @@
    }
   ```
 
-ps: `openid` 的获取可以参考我之前的文章 [微信小程序开通云开发并利用云函数获取Openid](https://blog.csdn.net/ITxiaodong/article/details/101320816), [全栈项目|小书架|微信小程序-登录及token鉴权](https://blog.csdn.net/ITxiaodong/article/details/103267007)
+ps: `openid` 的获取可以参考我之前的文章：
+
+ [微信小程序开通云开发并利用云函数获取Openid](https://blog.csdn.net/ITxiaodong/article/details/101320816)
+
+ [全栈项目|小书架|微信小程序-登录及token鉴权](https://blog.csdn.net/ITxiaodong/article/details/103267007)
 
 开发环境可以在`云数据库中查看`：
 
-![1577506164806](C:\Users\Aller\AppData\Roaming\Typora\typora-user-images\1577506164806.png)
+![开发环境](/screenshots/开发环境名称.png)
 
 ## 效果展示
 
