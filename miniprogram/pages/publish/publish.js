@@ -85,16 +85,29 @@ Page({
       this.jugdeUserLogin();
     }
   },
+  dateFormat: function (date) { //author: meizz   
+
+    var year = date.getFullYear()
+    var month = date.getMonth() + 1
+    var day = date.getDate()
+    var hour = date.getHours()
+    var minutes = date.getMinutes()
+    var seconds = date.getSeconds()
+    var realMonth = month > 9 ? month : "0" + month
+    return year + "-" + realMonth + "-" + day + " " + hour + ":" + minutes + ":" + seconds
+
+  },
   /**
    * 保存到发布集合中
    */
-  saveDataToServer: function(event) {
+  saveDataToServer: function (event) {
+    var date = this.dateFormat(new Date())
     
     db.collection('topic').add({
       // data 字段表示需新增的 JSON 数据
       data: {
         content: that.data.content,
-        date: new Date(),
+        date: date,
         images: that.data.images,
         user: that.data.user,
         isLike: that.data.isLike,
