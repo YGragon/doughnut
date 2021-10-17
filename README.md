@@ -1,3 +1,8 @@
+# 甜甜圈Plus 
+> 基础版也是能用，但是升级版UI美化而且加了很多新功能。有需要的可以查看升级版的项目，辛苦整理了35篇文章，从0开始实战云开发社区项目：文章可免费查看 https://www.yuque.com/longyi-z9dmn/zomm64#，源码需付费，谢谢理解。
+
+![专栏大纲](https://img-blog.csdnimg.cn/d474f2d636bc454db6b827fbee445202.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAX-m-meihow==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
+
 # 甜甜圈
 
 ## 使用说明
